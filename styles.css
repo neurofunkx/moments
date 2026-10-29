@@ -159,7 +159,7 @@ button {
 }
 
 .hero.section-wrap {
-  width: min(var(--content), 100%);
+  width: min(var(--content), calc(100% - 64px));
 }
 
 .hero .eyebrow {
@@ -690,6 +690,10 @@ h1 {
 @media (max-width: 980px) {
   .section-wrap,
   .site-header {
+    width: min(100% - 36px, var(--content));
+  }
+
+  .hero.section-wrap {
     width: min(100% - 36px, var(--content));
   }
 
