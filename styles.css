@@ -20,18 +20,30 @@ html {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   margin: 0;
   background: var(--page);
-  background-image:
-    linear-gradient(to bottom, transparent 0%, rgb(8 9 9 / 35%) 58%, var(--page) 700px),
-    url("assets/top-bg.jpg");
-  background-repeat: no-repeat;
-  background-position: top center, calc(50% + 100px) -200px;
-  background-size: 100% 700px, 100% auto;
   color: var(--text);
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.55;
+}
+
+body::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 700px;
+  content: "";
+  background-image:
+    linear-gradient(to bottom, transparent 0%, rgb(8 9 9 / 35%) 58%, var(--page) 700px),
+    url("assets/top-bg.jpg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: top center, calc(50% + 50px) -300px;
+  background-size: 100% 700px, 90% auto;
 }
 
 a {
@@ -121,7 +133,7 @@ button {
   color: white;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -192,7 +204,7 @@ h1 {
   margin-bottom: 8px;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: clamp(42px, 7.6vw, 82px);
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 0;
   line-height: 1.08;
 }
@@ -209,7 +221,7 @@ h1 {
 .hero-description {
   max-width: none;
   margin-bottom: 50px;
-  color: #aaa9a8;
+  color: #9c9c9c;
   font-size: clamp(17px, 2.03vw, 20px);
   line-height: 1.5;
 }
@@ -229,7 +241,7 @@ h1 {
 
 .hero-note {
   margin: 22px 0 0;
-  color: #aaa9a8;
+  color: #9c9c9c;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -238,8 +250,7 @@ h1 {
   display: grid;
   grid-template-columns: 1.3fr 1.05fr 1fr 1fr;
   gap: 24px;
-  margin-top: 112px;
-  padding-bottom: 96px;
+  margin-top: 64px;
 }
 
 .step-card,
@@ -261,17 +272,17 @@ h1 {
   color: #ffc64b;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 32px;
 }
 
 .step-card h2 {
   margin: 0 0 6px;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 0;
-  line-height: 1.2;
+  font-size: 33px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 40px;
 }
 
 .step-card p {
@@ -283,7 +294,47 @@ h1 {
 }
 
 .leaderboard-section {
+  margin-top: 96px;
   padding-bottom: 100px;
+}
+
+.leaderboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.leaderboard-heading h2 {
+  margin-bottom: 8px;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.leaderboard-heading p {
+  margin-bottom: 0;
+  color: #9c9c9c;
+  font-size: 20px;
+}
+
+.leaderboard-callout {
+  height: 56px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 20px;
+  border: 1px solid #876337;
+  background: #231f1c;
+  color: #ffc64b;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .section-heading {
@@ -310,12 +361,14 @@ h1 {
 
 .leaderboard-layout {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1.9fr) minmax(320px, 1fr);
+  gap: 32px;
 }
 
 .leaderboard {
-  padding: 15px 20px;
+  padding: 32px;
+  border-color: #242424;
+  background: #0f0f0f;
 }
 
 .leaderboard-head,
@@ -334,48 +387,128 @@ h1 {
 }
 
 .leaderboard-row {
-  min-height: 44px;
+  min-height: 66px;
+  grid-template-columns: 56px minmax(0, 1fr) 150px 150px;
+  padding-inline: 20px;
   border-top: 1px solid var(--line);
-  color: #b7b6b0;
-  font-size: 11px;
+  background: #171717;
+  color: #d0cecc;
+  font-size: 18px;
+}
+
+.leaderboard-row:last-child {
+  border-bottom: 1px solid var(--line);
 }
 
 .leaderboard-row strong {
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 500;
+  color: #d4af37;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.leaderboard-row:nth-child(2) strong {
+  color: #c9cdd2;
+}
+
+.leaderboard-row:nth-child(3) strong {
+  color: #cd7f32;
+}
+
+.leaderboard-row:nth-child(n + 4) strong {
+  color: #fff;
+}
+
+.player-views {
+  color: #d0cecc;
+  text-align: center;
 }
 
 .rank {
-  color: var(--gold);
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.rank-first {
+  color: #e5bf3b;
+}
+
+.rank-second {
+  color: #c5c8cb;
+}
+
+.rank-third {
+  color: #da873d;
+}
+
+.rank-fourth,
+.rank-fifth {
+  color: #f5f3ed;
 }
 
 .rank-note {
   color: var(--red);
+  text-align: right;
+  white-space: nowrap;
 }
 
 .challenge-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  min-height: 250px;
-  padding: 28px;
-  background:
-    radial-gradient(ellipse at 100% 0, rgb(215 189 117 / 9%), transparent 46%),
-    var(--surface);
+  justify-content: space-between;
+  min-height: 392px;
+  padding: 36px 32px;
+  border-color: #242424;
+  background: #0f0f0f;
+}
+
+.challenge-copy {
+  width: 100%;
+}
+
+.challenge-eyebrow {
+  margin-bottom: 8px;
+  color: #ffc64b;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .challenge-card h3 {
-  max-width: 300px;
-  margin-bottom: 12px;
-  font-size: 25px;
+  max-width: 420px;
+  margin-bottom: 8px;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
+  font-size: 33px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 42px;
 }
 
-.challenge-card > p:not(.eyebrow) {
-  margin-bottom: 18px;
-  color: var(--muted);
-  font-size: 12px;
+.challenge-copy > p:not(.challenge-eyebrow) {
+  margin-bottom: 0;
+  color: #9c9c9c;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.challenge-potential > img {
+  display: block;
+  margin-bottom: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.challenge-potential p {
+  margin-bottom: 0;
+  color: #9c9c9c;
+  font-size: 16px;
 }
 
 .moments-section {
@@ -707,14 +840,16 @@ h1 {
     width: 100%;
   }
 
-  body {
-    background-size: 100% 620px, auto 620px;
+  body::before {
+    height: 620px;
+    background-position: top center, calc(50% + 50px) -300px;
+    background-size: 100% 620px, auto 560px;
+    background-repeat: no-repeat, no-repeat;
   }
 
   .how-section {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-    padding-bottom: 72px;
   }
 
   .step-card {
@@ -724,6 +859,16 @@ h1 {
 
   .leaderboard-section {
     padding-bottom: 72px;
+  }
+
+  .leaderboard-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .leaderboard-heading p {
+    font-size: 17px;
   }
 
   .section-heading {
@@ -740,19 +885,23 @@ h1 {
     padding-inline: 12px;
   }
 
-  .leaderboard-head,
   .leaderboard-row {
     grid-template-columns: 34px minmax(0, 1fr) 52px 58px;
     gap: 7px;
+    padding-inline: 8px;
+    font-size: 14px;
   }
 
-  .leaderboard-row,
   .leaderboard-row strong {
-    font-size: 10px;
+    font-size: 16px;
+  }
+
+  .rank {
+    font-size: 18px;
   }
 
   .challenge-card {
-    min-height: 210px;
+    min-height: 300px;
     padding: 22px;
   }
 
@@ -793,14 +942,18 @@ h1 {
     padding-bottom: 34px;
   }
 
-  .leaderboard-head,
   .leaderboard-row {
     grid-template-columns: 27px minmax(0, 1fr) 43px 48px;
     gap: 5px;
+    font-size: 11px;
   }
 
-  .leaderboard-head {
-    font-size: 8px;
+  .leaderboard-row strong {
+    font-size: 13px;
+  }
+
+  .leaderboard-row .rank-note {
+    font-size: 10px;
   }
 
   .milestone-row div {
