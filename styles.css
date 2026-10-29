@@ -43,8 +43,8 @@ body::before {
     linear-gradient(to bottom, transparent 0%, rgb(8 9 9 / 35%) 58%, var(--page) 700px),
     url("assets/top-bg.jpg");
   background-repeat: no-repeat, no-repeat;
-  background-position: top center, calc(50% + 50px) -300px;
-  background-size: 100% 700px, 90% auto;
+  background-position: top center, calc(50% + 50px) -200px;
+  background-size: 100% 700px, auto 784px;
 }
 
 a {
@@ -1086,7 +1086,7 @@ h1 {
   .hero {
     min-height: 510px;
     align-items: end;
-    padding-block: 115px 44px;
+    padding-block: 60px 44px;
   }
 
   .hero-copy {
@@ -1095,9 +1095,7 @@ h1 {
 
   body::before {
     height: 620px;
-    background-position: top center, calc(50% + 50px) -300px;
-    background-size: 100% 620px, auto 560px;
-    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 620px, auto 784px;
   }
 
   .how-section {
