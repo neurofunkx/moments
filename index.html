@@ -11,7 +11,7 @@
     <title>Moment Makers' League | Bot Colony</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
   </head>
@@ -34,9 +34,9 @@
         <div class="navigation-links">
           <a href="#how-it-works">How It Works</a>
           <a href="#leaderboard">Leaderboard</a>
-          <a href="#moments">Watch Moments</a>
+          <a href="#rewards">Watch Moments</a>
         </div>
-        <a class="button button-small" href="#submit">Submit Your Moment</a>
+        <a class="button" href="#submit">Submit Your Moment</a>
       </nav>
     </header>
 
@@ -91,36 +91,46 @@
         </div>
         <div class="leaderboard-layout">
           <div class="leaderboard panel" aria-label="Players ranked by qualifying views">
-            <div class="leaderboard-row">
+            <a class="leaderboard-row" href="#moments" aria-label="View moments from RobotWhisperer">
               <span class="rank rank-first">#1</span>
               <strong>RobotWhisperer</strong>
-              <span class="player-views">284k views</span>
-              <span class="rank-note">5 moments <span aria-hidden="true">›</span></span>
-            </div>
-            <div class="leaderboard-row">
+              <div class="leaderboard-metrics">
+                <span class="player-views">284k views</span>
+                <span class="rank-note">5 moments <span aria-hidden="true">›</span></span>
+              </div>
+            </a>
+            <a class="leaderboard-row" href="#moments" aria-label="View moments from Chaosmaker23">
               <span class="rank rank-second">#2</span>
               <strong>Chaosmaker23</strong>
-              <span class="player-views">197k views</span>
-              <span class="rank-note">3 moments <span aria-hidden="true">›</span></span>
-            </div>
-            <div class="leaderboard-row">
+              <div class="leaderboard-metrics">
+                <span class="player-views">197k views</span>
+                <span class="rank-note">3 moments <span aria-hidden="true">›</span></span>
+              </div>
+            </a>
+            <a class="leaderboard-row" href="#moments" aria-label="View moments from SeoulP">
               <span class="rank rank-third">#3</span>
               <strong>SeoulP</strong>
-              <span class="player-views">42k views</span>
-              <span class="rank-note">2 moments <span aria-hidden="true">›</span></span>
-            </div>
-            <div class="leaderboard-row">
+              <div class="leaderboard-metrics">
+                <span class="player-views">42k views</span>
+                <span class="rank-note">2 moments <span aria-hidden="true">›</span></span>
+              </div>
+            </a>
+            <a class="leaderboard-row" href="#moments" aria-label="View moments from spreadftw">
               <span class="rank rank-fourth">#4</span>
               <strong>spreadftw</strong>
-              <span class="player-views">12k views</span>
-              <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
-            </div>
-            <div class="leaderboard-row">
+              <div class="leaderboard-metrics">
+                <span class="player-views">12k views</span>
+                <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
+              </div>
+            </a>
+            <a class="leaderboard-row" href="#moments" aria-label="View moments from neurofunkx">
               <span class="rank rank-fifth">#5</span>
               <strong>neurofunkx</strong>
-              <span class="player-views">5k views</span>
-              <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
-            </div>
+              <div class="leaderboard-metrics">
+                <span class="player-views">5k views</span>
+                <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
+              </div>
+            </a>
           </div>
           <aside class="challenge-card panel">
             <div class="challenge-copy">
@@ -133,6 +143,119 @@
               <p>Potential to make the next viral Bot Colony Moment</p>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="moments-section" id="moments">
+        <div class="section-wrap moments-content">
+          <div class="moments-heading">
+            <div>
+              <h2>Moments Worth Watching</h2>
+              <p>One evolving gallery. The best Moments replace the rest.</p>
+            </div>
+            <span class="curator-note">Curated by North Side</span>
+          </div>
+          <div class="moments-toolbar">
+            <div class="filter-row" role="group" aria-label="Filter moments by episode">
+              <button class="filter-chip is-active" type="button" data-episode-filter="all" aria-pressed="true">All episodes</button>
+              <button class="filter-chip" type="button" data-episode-filter="intruder" aria-pressed="false">Intruder</button>
+              <button class="filter-chip" type="button" data-episode-filter="arrival" aria-pressed="false">Arrival</button>
+              <button class="filter-chip" type="button" data-episode-filter="riot" aria-pressed="false">Riot</button>
+            </div>
+            <label class="language-filter">
+              <span class="visually-hidden">Filter moments by language</span>
+              <select id="language-filter">
+                <option value="all">All languages</option>
+                <option value="english">English</option>
+              </select>
+            </label>
+          </div>
+          <div class="moment-grid">
+            <a class="moment-card" href="#moments" data-episode="riot" data-language="english">
+              <div class="moment-image">
+                <img src="assets/moment-preview-1.jpg" alt="Jimmy beside a robot in Bot Colony">
+              </div>
+              <h3>The Humanity Test title might span over two rows</h3>
+              <p class="moment-details">Riot · Hades / Angel · English</p>
+              <p class="moment-byline"><strong>neurofunkx</strong><span>42k views</span></p>
+            </a>
+            <a class="moment-card" href="#moments" data-episode="intruder" data-language="english">
+              <div class="moment-image">
+                <img src="assets/moment-preview-2.jpg" alt="Jimmy speaking with a robot in Bot Colony">
+              </div>
+              <h3>Jimmy Follows Orders</h3>
+              <p class="moment-details">Intruder · Object manipulation · English</p>
+              <p class="moment-byline"><strong>alexbanks</strong><span>42k views</span></p>
+            </a>
+            <a class="moment-card" href="#moments" data-episode="arrival" data-language="english">
+              <div class="moment-image">
+                <img src="assets/moment-preview-3.jpg" alt="A Bot Colony robot near a plane at sunset">
+              </div>
+              <h3>Meet Mike &amp; Mary</h3>
+              <p class="moment-details">Arrival · Robot dialogue · English</p>
+              <p class="moment-byline"><strong>automatik</strong><span>42k views</span></p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="moments-section moments-followup" id="rewards" aria-labelledby="moments-followup-title">
+        <div class="section-wrap moments-content">
+          <div class="moments-heading">
+            <div>
+              <h2 id="moments-followup-title">Earn LEKS. Win Recognition.</h2>
+              <p>Rewards encourage you to keep playing—and making more Moments.</p>
+            </div>
+          </div>
+          <div class="earn-rewards-grid">
+            <article class="earn-reward-panel earn-milestones">
+              <p class="earn-reward-eyebrow">Automatic milestone - after verification</p>
+              <h3>Views Earn LEKS</h3>
+              <p class="earn-reward-description">As your videos attract viewers, you unlock gameplay credit. Milestone rewards are cumulative, not additive.</p>
+              <div class="earn-milestone-row">
+                <div>
+                  <strong>500</strong>
+                  <span>LEKS at<br><b>1k views</b></span>
+                </div>
+                <div>
+                  <strong>2500</strong>
+                  <span>LEKS at<br><b>10k views</b></span>
+                </div>
+                <div>
+                  <strong>15000</strong>
+                  <span>LEKS at<br><b>100k views</b></span>
+                </div>
+              </div>
+            </article>
+            <article class="earn-reward-panel earn-editorial">
+              <p class="earn-reward-eyebrow">Monthly editorial prizes</p>
+              <h3>Win Steam Gift Cards</h3>
+              <p class="earn-reward-description">North Side sets a fixed monthly prize pool. Human editors award it to the players who contributed the most—considering creativity, quality, reach and impact.</p>
+              <div class="earn-editorial-note">
+                <p>Not an automatic payout for leaderboard rank.</p>
+              </div>
+              <p class="earn-pool-note">Monthly pool amount announced before each competition period.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="moments-section final-cta-section" id="submit" aria-labelledby="final-cta-title">
+        <div class="section-wrap final-cta-content">
+          <div class="final-cta-copy">
+            <p class="final-cta-eyebrow"><span aria-hidden="true"></span>Your moment could be next</p>
+            <h2 id="final-cta-title">Made a robot say or do something unforgettable?</h2>
+            <p>Post the clip on your channel, then submit the link. We'll give you a trackable League referral link.</p>
+            <a class="button" href="#submit">Submit your moment</a>
+          </div>
+          <footer class="site-footer">
+            <span>Copyright © 2026 Bot Colony</span>
+            <nav aria-label="Footer navigation">
+              <a href="#moments">Watch Moments</a>
+              <a href="#leaderboard">Leaderboard</a>
+              <a href="#rewards">Rules &amp; Rewards</a>
+            </nav>
+          </footer>
         </div>
       </section>
     </main>
