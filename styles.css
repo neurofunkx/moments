@@ -285,7 +285,7 @@ h1 {
 .hero-note {
   margin: 22px 0 0;
   color: #9c9c9c;
-  font-size: 16px;
+  font-size: 14.4px;
   line-height: 1.5;
 }
 
@@ -1019,6 +1019,10 @@ h1 {
     z-index: 3;
   }
 
+  .wordmark img {
+    width: 164px;
+  }
+
   .menu-toggle {
     width: 28px;
     height: 28px;
@@ -1326,6 +1330,27 @@ h1 {
 @media (max-width: 700px) {
   .how-section {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .step-card {
+    min-height: 92px;
+    padding: 15px;
+  }
+
+  .step-number {
+    margin-bottom: 26px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .step-card h2 {
+    margin-bottom: 4px;
+    font-size: 25px;
+    line-height: 30px;
+  }
+
+  .step-card p {
+    font-size: 14px;
   }
 
   .final-cta-section {
