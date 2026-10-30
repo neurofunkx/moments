@@ -650,7 +650,7 @@ h1 {
 }
 
 .final-cta-section .site-footer > span {
-  color: #9c9c9c;
+  color: rgb(156 156 156 / 75%);
 }
 
 .final-cta-section .site-footer nav {
@@ -1383,6 +1383,10 @@ h1 {
     gap: 12px 20px;
   }
 
+  .final-cta-section .site-footer {
+    opacity: 0.75;
+  }
+
   .hero-description br {
     display: none;
   }
@@ -1459,7 +1463,8 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  .hero .eyebrow {
+  .hero .eyebrow,
+  .earn-reward-eyebrow {
     font-size: min(18px, 3.7vw);
     white-space: nowrap;
   }
