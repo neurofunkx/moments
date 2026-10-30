@@ -662,7 +662,7 @@ h1 {
 .earn-rewards-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 32px;
+  gap: 12px;
   margin-top: 40px;
 }
 
@@ -671,13 +671,13 @@ h1 {
   min-height: 473px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 12px;
   padding: 32px;
   background: #0f0f0f;
 }
 
 .earn-reward-eyebrow {
-  margin-bottom: 12px;
+  margin-bottom: 0;
   color: #ffc64b;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -688,7 +688,7 @@ h1 {
 }
 
 .earn-reward-panel h3 {
-  margin-bottom: 10px;
+  margin-bottom: 0;
   padding-right: 24px;
   color: #fff;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
