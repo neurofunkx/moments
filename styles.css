@@ -1130,10 +1130,6 @@ h1 {
     gap: 16px;
   }
 
-  .leaderboard-heading p {
-    font-size: 17px;
-  }
-
   .leaderboard {
     padding-inline: 12px;
   }
@@ -1142,22 +1138,15 @@ h1 {
     grid-template-columns: 38px minmax(0, 1fr) 220px;
     gap: 8px;
     padding-inline: 12px;
-    font-size: 15px;
   }
 
   .leaderboard-metrics {
     gap: 8px;
-    font-size: 13px;
   }
 
   .leaderboard-row strong {
-    font-size: 17px;
     white-space: normal;
     line-height: 1.2;
-  }
-
-  .leaderboard-row > .rank {
-    font-size: 18px;
   }
 
   .challenge-card {
@@ -1393,33 +1382,22 @@ h1 {
     min-height: 72px;
     padding-block: 0;
     padding-inline: 10px;
-    font-size: 14px;
   }
 
   .leaderboard-metrics {
     grid-template-columns: minmax(0, 1fr) max-content;
     gap: 8px;
-    font-size: 13px;
   }
 
   .leaderboard-row strong {
-    font-size: clamp(15px, 3.4vw, 17px);
     white-space: normal;
     line-height: 1.25;
-  }
-
-  .leaderboard-row > .rank {
-    font-size: 18px;
-  }
-
-  .leaderboard-row .rank-note {
-    font-size: 12px;
   }
 }
 
 @media (max-width: 460px) {
   .leaderboard-row {
-    grid-template-columns: 30px minmax(0, 1fr);
+    grid-template-columns: 34px minmax(0, 1fr);
     grid-template-areas:
       "rank player"
       "rank metrics";
@@ -1429,21 +1407,23 @@ h1 {
   .leaderboard-metrics {
     grid-template-columns: minmax(0, 1fr);
     gap: 2px;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .leaderboard-row strong {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.4;
     white-space: normal;
   }
 
   .leaderboard-row > .rank {
-    font-size: 17px;
+    align-self: start;
+    font-size: 20px;
+    line-height: 25px;
   }
 
   .leaderboard-row .rank-note {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 
