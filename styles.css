@@ -243,7 +243,7 @@ h3 {
 
 h1 {
   max-width: none;
-  margin-bottom: 8px;
+  margin-block: 12px;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: clamp(42px, 7.6vw, 82px);
   font-weight: 800;
@@ -510,7 +510,8 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 32px;
   min-height: 392px;
   padding: 36px 32px;
   border-color: #242424;
@@ -519,6 +520,11 @@ h1 {
 
 .challenge-copy {
   width: 100%;
+}
+
+.challenge-potential {
+  width: 100%;
+  margin-top: auto;
 }
 
 .challenge-eyebrow {
@@ -861,6 +867,8 @@ h1 {
 }
 
 .language-filter select {
+  width: 202px;
+  max-width: 100%;
   height: 44px;
   min-height: 44px;
   padding: 8px 50px 8px 20px;
@@ -1073,7 +1081,7 @@ h1 {
   }
 
   .earn-milestone-row strong {
-    font-size: clamp(18px, 2.2vw, 22px);
+    font-size: 22px;
     line-height: 1.2;
   }
 }
@@ -1128,19 +1136,21 @@ h1 {
   }
 
   .leaderboard-row {
-    grid-template-columns: 34px minmax(0, 1fr) 240px;
-    gap: 7px;
-    padding-inline: 8px;
-    font-size: 14px;
+    grid-template-columns: 38px minmax(0, 1fr) 220px;
+    gap: 8px;
+    padding-inline: 12px;
+    font-size: 15px;
   }
 
   .leaderboard-metrics {
-    gap: 7px;
+    gap: 8px;
     font-size: 13px;
   }
 
   .leaderboard-row strong {
-    font-size: 16px;
+    font-size: 17px;
+    white-space: normal;
+    line-height: 1.2;
   }
 
   .leaderboard-row > .rank {
@@ -1179,9 +1189,16 @@ h1 {
     padding-bottom: 34px;
   }
 
+  .button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .hero .button,
   .final-cta-copy .button,
   .primary-navigation > .button {
+    width: 100%;
     padding-inline: 12px;
     font-size: clamp(16px, 4.6vw, 18px);
   }
@@ -1224,16 +1241,20 @@ h1 {
 
 @media (max-width: 640px) {
   .earn-milestone-row {
-    grid-template-columns: repeat(3, minmax(108px, 1fr));
-    overflow-x: auto;
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+    gap: 12px;
   }
 
   .earn-milestone-row > div {
-    padding: 10px;
-  }
+    min-height: 180px;
+      max-height: 256px;
+      padding: 10px;
+    }
 
   .earn-milestone-row strong {
     margin-bottom: 8px;
+    font-size: 24px;
     line-height: 1.2;
   }
 
@@ -1244,7 +1265,7 @@ h1 {
   }
 
   .earn-milestone-row b {
-    font-size: clamp(12px, 3vw, 15px);
+    font-size: 15px;
     letter-spacing: 0.04em;
     line-height: 1.25;
   }
@@ -1256,10 +1277,15 @@ h1 {
     overflow-x: visible;
   }
 
+  .earn-milestone-row > div {
+    min-height: 180px;
+    max-height: 256px;
+  }
+
   .earn-milestone-row strong {
     margin-bottom: 12px;
-    font-size: 33px;
-    line-height: 42px;
+    font-size: 30px;
+    line-height: 38px;
   }
 
   .earn-milestone-row span {
@@ -1284,14 +1310,24 @@ h1 {
   }
 
   .filter-row {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    width: fit-content;
+    min-width: fit-content;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .filter-chip {
+    flex: 0 0 auto;
+    min-width: max-content;
   }
 
   .language-filter,
   .language-filter select {
     width: 100%;
+    max-width: 202px;
   }
 }
 
@@ -1348,22 +1384,25 @@ h1 {
   }
 
   .leaderboard-row {
-    grid-template-columns: 34px minmax(0, 1fr) minmax(180px, 0.9fr);
+    grid-template-columns: 34px minmax(0, 1fr) minmax(180px, 0.95fr);
     grid-template-areas: "rank player metrics";
-    gap: 7px;
+    gap: 8px;
+    min-height: 72px;
     padding-block: 0;
-    padding-inline: 8px;
-    font-size: 13px;
+    padding-inline: 10px;
+    font-size: 14px;
   }
 
   .leaderboard-metrics {
     grid-template-columns: minmax(0, 1fr) max-content;
-    gap: 7px;
+    gap: 8px;
     font-size: 13px;
   }
 
   .leaderboard-row strong {
-    font-size: clamp(14px, 2.2vw, 16px);
+    font-size: clamp(15px, 3.4vw, 17px);
+    white-space: normal;
+    line-height: 1.25;
   }
 
   .leaderboard-row > .rank {
@@ -1371,7 +1410,7 @@ h1 {
   }
 
   .leaderboard-row .rank-note {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
