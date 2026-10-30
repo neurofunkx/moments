@@ -579,8 +579,8 @@ h1 {
 }
 
 .final-cta-section {
-  min-height: 675px;
-  padding-block: 96px 16px;
+  min-height: 0;
+  padding-block: 96px 12px;
 }
 
 .final-cta-content {
@@ -641,10 +641,12 @@ h1 {
 .final-cta-section .site-footer {
   position: relative;
   z-index: 1;
-  min-height: 42px;
+  min-height: 0;
   margin-top: auto;
+  padding-block: 8px;
   border-top: 0;
   font-size: 14px;
+  line-height: 1.2;
 }
 
 .final-cta-section .site-footer > span {
@@ -1354,7 +1356,7 @@ h1 {
   }
 
   .final-cta-section {
-    min-height: 620px;
+    min-height: 0;
     padding-block: 72px 12px;
   }
 
@@ -1387,6 +1389,10 @@ h1 {
 
   .moments-section {
     padding-block: 72px;
+  }
+
+  .moments-section.final-cta-section {
+    padding-bottom: 12px;
   }
 
   .moments-heading {
