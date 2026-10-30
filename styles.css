@@ -534,7 +534,17 @@ h1 {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 0.02em;
+  line-height: 1.3;
   text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .challenge-eyebrow {
+    font-size: min(18px, 3.7vw);
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
 }
 
 .challenge-card h3 {
@@ -1463,10 +1473,16 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  .hero .eyebrow,
-  .earn-reward-eyebrow {
+  .hero .eyebrow {
     font-size: min(18px, 3.7vw);
     white-space: nowrap;
+  }
+
+  .earn-reward-eyebrow {
+    font-size: clamp(13px, 3vw, 18px);
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    white-space: normal;
   }
 
   h1 {
