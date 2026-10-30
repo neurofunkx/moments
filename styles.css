@@ -671,6 +671,7 @@ h1 {
   min-height: 473px;
   display: flex;
   flex-direction: column;
+  gap: 32px;
   padding: 32px;
   background: #0f0f0f;
 }
@@ -688,6 +689,7 @@ h1 {
 
 .earn-reward-panel h3 {
   margin-bottom: 10px;
+  padding-right: 24px;
   color: #fff;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: clamp(26px, 3vw, 36px);
@@ -947,6 +949,7 @@ h1 {
 
 .moment-card h3 {
   margin-bottom: 4px;
+  padding-right: 24px;
   color: #fff;
   font-family: Orbitron, Arial, Helvetica, sans-serif;
   font-size: 20px;
