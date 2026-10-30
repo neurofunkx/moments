@@ -17,6 +17,7 @@
 html {
   overflow-x: clip;
   scroll-behavior: smooth;
+  scroll-padding-top: 81px;
 }
 
 body {
@@ -998,6 +999,10 @@ h1 {
 }
 
 @media (max-width: 1100px) {
+  html {
+    scroll-padding-top: 71px;
+  }
+
   .site-header {
     min-height: 66px;
     z-index: 3;
