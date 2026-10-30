@@ -1427,6 +1427,22 @@ h1 {
   }
 }
 
+@media (max-width: 520px) {
+  .hero .eyebrow {
+    font-size: min(18px, 3.7vw);
+    white-space: nowrap;
+  }
+
+  h1 {
+    font-size: calc((100vw - 72px) / 9.3);
+  }
+
+  .h1-line {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 340px) {
   .step-card {
     min-width: 0;
