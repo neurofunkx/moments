@@ -648,6 +648,160 @@ h1 {
   min-width: 324px;
 }
 
+.submit-panel {
+  max-width: 820px;
+  margin-bottom: 56px;
+}
+
+.submit-status {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-left: 3px solid #ffc64b;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+}
+
+.submit-status.is-error {
+  border-left-color: var(--red);
+}
+
+.submit-signin p {
+  margin: 14px 0 0;
+  color: #9c9c9c;
+  font-size: 15px;
+}
+
+.submit-account {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  color: #9c9c9c;
+}
+
+.submit-account[hidden] {
+  display: none;
+}
+
+.submit-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gold);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.moment-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.moment-form[hidden] {
+  display: none;
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field-wide {
+  grid-column: 1 / -1;
+}
+
+.form-field > span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.form-field small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #555650;
+  border-radius: 0;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.form-check input:focus-visible {
+  outline: 2px solid #ffc64b;
+  outline-offset: 1px;
+}
+
+.form-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.form-check input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  accent-color: var(--red);
+}
+
+.form-check span {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.field-error {
+  color: #ff8a8a;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.form-check .field-error {
+  flex-basis: 100%;
+}
+
+.moment-form .button {
+  width: 100%;
+  cursor: pointer;
+}
+
+.moment-form .button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+@media (max-width: 700px) {
+  .moment-form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .final-cta-section .site-footer {
   position: relative;
   z-index: 1;

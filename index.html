@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#080909">
+    <meta name="moments-api" content="https://api.botcolony.com:5446">
     <meta
       name="description"
       content="Moment Makers' League — say anything, show everyone what happened."
@@ -246,7 +247,81 @@
             <p class="final-cta-eyebrow"><span aria-hidden="true"></span>Your moment could be next</p>
             <h2 id="final-cta-title">Made a robot say or do something unforgettable?</h2>
             <p>Post the clip on your channel, then submit the link. We'll give you a trackable League referral link.</p>
-            <a class="button" href="#submit">Submit your moment</a>
+            <div class="submit-panel" id="submit-panel">
+              <p class="submit-status" id="submit-status" role="status" hidden></p>
+
+              <div class="submit-signin" id="submit-signin" hidden>
+                <a class="button" id="steam-sign-in" href="#submit">Sign in through Steam</a>
+                <p>Your Steam account links your Moments to the player who earns the rewards. We never see your Steam password.</p>
+              </div>
+
+              <div class="submit-account" id="submit-account" hidden>
+                <span>Signed in with Steam</span>
+                <button class="submit-link" id="steam-sign-out" type="button">Sign out</button>
+              </div>
+
+              <form class="moment-form" id="moment-form" novalidate hidden>
+                <label class="form-field">
+                  <span>Player name</span>
+                  <input name="handle" required minlength="3" maxlength="32" pattern="[\p{L}\p{N}_.\-]+" autocomplete="nickname">
+                  <small>Shown on the leaderboard. Letters, numbers, dots, dashes and underscores.</small>
+                  <em class="field-error" data-error-for="handle"></em>
+                </label>
+                <label class="form-field">
+                  <span>Email (optional)</span>
+                  <input name="email" type="email" maxlength="254" autocomplete="email">
+                  <small>Only used to contact you about your Moment or a prize.</small>
+                  <em class="field-error" data-error-for="email"></em>
+                </label>
+                <label class="form-field form-field-wide">
+                  <span>YouTube or Twitch link</span>
+                  <input name="videoUrl" type="url" required maxlength="500" placeholder="https://www.youtube.com/watch?v=...">
+                  <em class="field-error" data-error-for="videoUrl"></em>
+                </label>
+                <label class="form-field form-field-wide">
+                  <span>Moment title</span>
+                  <input name="title" required minlength="3" maxlength="120">
+                  <em class="field-error" data-error-for="title"></em>
+                </label>
+                <label class="form-field">
+                  <span>Episode</span>
+                  <select name="episode" required>
+                    <option value="">Choose an episode</option>
+                    <option value="intruder">Intruder</option>
+                    <option value="arrival">Arrival</option>
+                    <option value="riot">Riot</option>
+                  </select>
+                  <em class="field-error" data-error-for="episode"></em>
+                </label>
+                <label class="form-field">
+                  <span>Video language</span>
+                  <select name="language" required>
+                    <option value="english">English</option>
+                    <option value="french">French</option>
+                    <option value="german">German</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="russian">Russian</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="korean">Korean</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <em class="field-error" data-error-for="language"></em>
+                </label>
+                <label class="form-field form-field-wide">
+                  <span>What happens in it? (optional)</span>
+                  <textarea name="description" rows="3" maxlength="500"></textarea>
+                  <em class="field-error" data-error-for="description"></em>
+                </label>
+                <label class="form-check form-field-wide">
+                  <input name="acceptedRules" type="checkbox" required>
+                  <span>This is my own video, and Bot Colony can show it on this site.</span>
+                  <em class="field-error" data-error-for="acceptedRules"></em>
+                </label>
+                <button class="button form-field-wide" id="moment-submit" type="submit">Submit your moment</button>
+              </form>
+            </div>
           </div>
           <footer class="site-footer">
             <span>Copyright © 2026 Bot Colony</span>
