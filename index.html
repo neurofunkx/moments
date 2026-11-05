@@ -86,52 +86,13 @@
         <div class="leaderboard-heading">
           <div>
             <h2>Players Leaderboard</h2>
-            <p>All-time qualifying views. Players are ranked by their Moments.</p>
+            <p>Players are ranked by their approved Moments.</p>
           </div>
           <span class="leaderboard-callout">The race is on</span>
         </div>
         <div class="leaderboard-layout">
-          <div class="leaderboard panel" aria-label="Players ranked by qualifying views">
-            <a class="leaderboard-row" href="#moments" aria-label="View moments from RobotWhisperer">
-              <span class="rank rank-first">#1</span>
-              <strong>RobotWhisperer</strong>
-              <div class="leaderboard-metrics">
-                <span class="player-views">284k views</span>
-                <span class="rank-note">5 moments <span aria-hidden="true">›</span></span>
-              </div>
-            </a>
-            <a class="leaderboard-row" href="#moments" aria-label="View moments from Chaosmaker23">
-              <span class="rank rank-second">#2</span>
-              <strong>Chaosmaker23</strong>
-              <div class="leaderboard-metrics">
-                <span class="player-views">197k views</span>
-                <span class="rank-note">3 moments <span aria-hidden="true">›</span></span>
-              </div>
-            </a>
-            <a class="leaderboard-row" href="#moments" aria-label="View moments from SeoulP">
-              <span class="rank rank-third">#3</span>
-              <strong>SeoulP</strong>
-              <div class="leaderboard-metrics">
-                <span class="player-views">42k views</span>
-                <span class="rank-note">2 moments <span aria-hidden="true">›</span></span>
-              </div>
-            </a>
-            <a class="leaderboard-row" href="#moments" aria-label="View moments from spreadftw">
-              <span class="rank rank-fourth">#4</span>
-              <strong>spreadftw</strong>
-              <div class="leaderboard-metrics">
-                <span class="player-views">12k views</span>
-                <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
-              </div>
-            </a>
-            <a class="leaderboard-row" href="#moments" aria-label="View moments from neurofunkx">
-              <span class="rank rank-fifth">#5</span>
-              <strong>neurofunkx</strong>
-              <div class="leaderboard-metrics">
-                <span class="player-views">5k views</span>
-                <span class="rank-note">1 moment <span aria-hidden="true">›</span></span>
-              </div>
-            </a>
+          <div class="leaderboard panel" id="leaderboard-list" aria-label="Players ranked by approved Moments">
+            <p class="list-status">Loading the leaderboard...</p>
           </div>
           <aside class="challenge-card panel">
             <div class="challenge-copy">
@@ -167,36 +128,15 @@
               <span class="visually-hidden">Filter moments by language</span>
               <select id="language-filter">
                 <option value="all">All languages</option>
-                <option value="english">English</option>
               </select>
             </label>
           </div>
-          <div class="moment-grid">
-            <a class="moment-card" href="#moments" data-episode="riot" data-language="english">
-              <div class="moment-image">
-                <img src="assets/moment-preview-1.jpg" alt="Jimmy beside a robot in Bot Colony" width="452" height="250" loading="lazy" decoding="async">
-              </div>
-              <h3>The Humanity Test title might span over two rows</h3>
-              <p class="moment-details">Riot · Hades / Angel · English</p>
-              <p class="moment-byline"><strong>neurofunkx</strong><span>42k views</span></p>
-            </a>
-            <a class="moment-card" href="#moments" data-episode="intruder" data-language="english">
-              <div class="moment-image">
-                <img src="assets/moment-preview-2.jpg" alt="Jimmy speaking with a robot in Bot Colony" width="452" height="250" loading="lazy" decoding="async">
-              </div>
-              <h3>Jimmy Follows Orders</h3>
-              <p class="moment-details">Intruder · Object manipulation · English</p>
-              <p class="moment-byline"><strong>alexbanks</strong><span>42k views</span></p>
-            </a>
-            <a class="moment-card" href="#moments" data-episode="arrival" data-language="english">
-              <div class="moment-image">
-                <img src="assets/moment-preview-3.jpg" alt="A Bot Colony robot near a plane at sunset" width="452" height="250" loading="lazy" decoding="async">
-              </div>
-              <h3>Meet Mike &amp; Mary</h3>
-              <p class="moment-details">Arrival · Robot dialogue · English</p>
-              <p class="moment-byline"><strong>automatik</strong><span>42k views</span></p>
-            </a>
-          </div>
+          <p class="moment-player-filter" id="moment-player-filter" hidden>
+            <span></span>
+            <button class="submit-link" id="moment-player-clear" type="button">Show everyone</button>
+          </p>
+          <p class="list-status" id="moment-status" role="status">Loading Moments...</p>
+          <div class="moment-grid" id="moment-grid"></div>
         </div>
       </section>
 

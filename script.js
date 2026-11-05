@@ -55,50 +55,188 @@ if (menuToggle && navigation) {
   });
 }
 
+const isLocalSite = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const apiBase = isLocalSite
+  ? "http://localhost:5446"
+  : document.querySelector('meta[name="moments-api"]')?.getAttribute("content") || "";
+
+const fetchJson = async (path) => {
+  const response = await fetch(`${apiBase}${path}`);
+  if (!response.ok) {
+    throw new Error(`Unexpected status ${response.status}`);
+  }
+  return response.json();
+};
+
+const episodeNames = { intruder: "Intruder", arrival: "Arrival", riot: "Riot" };
+const platformNames = { youtube: "YouTube", twitch: "Twitch" };
+const placeholderImages = ["assets/moment-preview-1.jpg", "assets/moment-preview-2.jpg", "assets/moment-preview-3.jpg"];
+const rankClasses = ["rank-first", "rank-second", "rank-third", "rank-fourth", "rank-fifth"];
+
+const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+
+const makeElement = (tag, className, text) => {
+  const element = document.createElement(tag);
+  if (className) {
+    element.className = className;
+  }
+  if (text !== undefined) {
+    element.textContent = text;
+  }
+  return element;
+};
+
 const episodeFilters = document.querySelectorAll("[data-episode-filter]");
 const languageFilter = document.querySelector("#language-filter");
-const momentCards = document.querySelectorAll(".moment-card[data-episode]");
+const momentGrid = document.querySelector("#moment-grid");
+const momentStatus = document.querySelector("#moment-status");
+const playerFilter = document.querySelector("#moment-player-filter");
+const playerClear = document.querySelector("#moment-player-clear");
+const leaderboardList = document.querySelector("#leaderboard-list");
 
-if (languageFilter instanceof HTMLSelectElement && momentCards.length > 0) {
-  let activeEpisode = "all";
+let activeEpisode = "all";
+let activePlayer = "";
 
-  const filterMoments = () => {
-    momentCards.forEach((card) => {
-      const matchesEpisode = activeEpisode === "all" || card.dataset.episode === activeEpisode;
-      const matchesLanguage = languageFilter.value === "all" || card.dataset.language === languageFilter.value;
-      card.hidden = !matchesEpisode || !matchesLanguage;
-    });
-  };
-
-  episodeFilters.forEach((filter) => {
-    if (!(filter instanceof HTMLButtonElement)) {
-      return;
-    }
-
-    filter.addEventListener("click", () => {
-      activeEpisode = filter.dataset.episodeFilter || "all";
-      episodeFilters.forEach((button) => {
-        if (button instanceof HTMLButtonElement) {
-          const isActive = button === filter;
-          button.classList.toggle("is-active", isActive);
-          button.setAttribute("aria-pressed", String(isActive));
-        }
-      });
-      filterMoments();
-    });
+const filterMoments = () => {
+  const cards = [...momentGrid.children];
+  if (cards.length === 0) {
+    return;
+  }
+  cards.forEach((card) => {
+    const matchesEpisode = activeEpisode === "all" || card.dataset.episode === activeEpisode;
+    const matchesLanguage = languageFilter.value === "all" || card.dataset.language === languageFilter.value;
+    const matchesPlayer = !activePlayer || card.dataset.player === activePlayer;
+    card.hidden = !matchesEpisode || !matchesLanguage || !matchesPlayer;
   });
 
-  languageFilter.addEventListener("change", filterMoments);
-}
+  const anyVisible = cards.some((card) => !card.hidden);
+  momentStatus.textContent = anyVisible ? "" : "No Moments match these filters.";
+  momentStatus.hidden = anyVisible;
+
+  playerFilter.hidden = !activePlayer;
+  playerFilter.querySelector("span").textContent = activePlayer ? `Showing Moments by ${activePlayer}` : "";
+};
+
+const buildMomentCard = (moment, index) => {
+  const card = makeElement("a", "moment-card");
+  card.href = moment.videoUrl;
+  card.target = "_blank";
+  card.rel = "noopener noreferrer";
+  card.dataset.episode = moment.episode;
+  card.dataset.language = moment.language;
+  card.dataset.player = moment.handle;
+
+  const placeholder = placeholderImages[index % placeholderImages.length];
+  const frame = makeElement("div", "moment-image");
+  const image = document.createElement("img");
+  image.src = moment.thumbnail || placeholder;
+  image.alt = "";
+  image.width = 452;
+  image.height = 250;
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.addEventListener("error", () => {
+    image.src = placeholder;
+  }, { once: true });
+  frame.append(image);
+
+  const details = [
+    episodeNames[moment.episode] || capitalize(moment.episode),
+    platformNames[moment.platform] || capitalize(moment.platform),
+    capitalize(moment.language),
+  ].join(" · ");
+
+  const byline = makeElement("p", "moment-byline");
+  byline.append(makeElement("strong", "", moment.handle));
+
+  card.append(frame, makeElement("h3", "", moment.title), makeElement("p", "moment-details", details), byline);
+  return card;
+};
+
+const buildLeaderboardRow = (player, index) => {
+  const row = makeElement("a", "leaderboard-row");
+  row.href = "#moments";
+  row.setAttribute("aria-label", `View moments from ${player.handle}`);
+  row.addEventListener("click", () => {
+    activePlayer = player.handle;
+    filterMoments();
+  });
+
+  const note = makeElement("span", "rank-note", `${player.moments} ${player.moments === 1 ? "moment" : "moments"} `);
+  const arrow = makeElement("span", "", "›");
+  arrow.setAttribute("aria-hidden", "true");
+  note.append(arrow);
+  const metrics = makeElement("div", "leaderboard-metrics");
+  metrics.append(note);
+
+  row.append(
+    makeElement("span", `rank ${rankClasses[index] || ""}`.trim(), `#${index + 1}`),
+    makeElement("strong", "", player.handle),
+    metrics,
+  );
+  return row;
+};
+
+const addLanguageOptions = (moments) => {
+  [...new Set(moments.map((moment) => moment.language))].sort().forEach((language) => {
+    languageFilter.add(new Option(capitalize(language), language));
+  });
+};
+
+const loadGallery = async () => {
+  try {
+    const { moments } = await fetchJson("/api/moments");
+    momentGrid.replaceChildren(...moments.map(buildMomentCard));
+    addLanguageOptions(moments);
+    momentStatus.textContent = "No Moments yet. Yours could be the first.";
+    momentStatus.hidden = moments.length > 0;
+    filterMoments();
+  } catch {
+    momentStatus.textContent = "Moments are unavailable right now. Please try again soon.";
+    momentStatus.hidden = false;
+  }
+};
+
+const loadLeaderboard = async () => {
+  const showMessage = (message) => {
+    leaderboardList.replaceChildren(makeElement("p", "list-status", message));
+  };
+  try {
+    const { players } = await fetchJson("/api/leaderboard");
+    if (players.length === 0) {
+      showMessage("No players on the board yet. Be the first.");
+    } else {
+      leaderboardList.replaceChildren(...players.map(buildLeaderboardRow));
+    }
+  } catch {
+    showMessage("The leaderboard is unavailable right now. Please try again soon.");
+  }
+};
+
+episodeFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    activeEpisode = filter.dataset.episodeFilter || "all";
+    episodeFilters.forEach((button) => {
+      const isActive = button === filter;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+    filterMoments();
+  });
+});
+
+languageFilter.addEventListener("change", filterMoments);
+playerClear.addEventListener("click", () => {
+  activePlayer = "";
+  filterMoments();
+});
+
+loadGallery();
+loadLeaderboard();
 
 const momentForm = document.querySelector("#moment-form");
 
 if (momentForm instanceof HTMLFormElement) {
-  const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-  const apiBase = isLocal
-    ? "http://localhost:5446"
-    : document.querySelector('meta[name="moments-api"]')?.getAttribute("content") || "";
-
   const statusLine = document.querySelector("#submit-status");
   const signInBlock = document.querySelector("#submit-signin");
   const accountBlock = document.querySelector("#submit-account");

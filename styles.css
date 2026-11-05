@@ -506,6 +506,10 @@ h1 {
   color: #ff2929;
 }
 
+.rank-note:only-child {
+  grid-column: 2;
+}
+
 .challenge-card {
   display: flex;
   flex-direction: column;
@@ -800,6 +804,25 @@ h1 {
   .moment-form {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+.list-status {
+  margin: 0;
+  color: #9c9c9c;
+}
+
+.list-status[hidden],
+.moment-player-filter[hidden] {
+  display: none;
+}
+
+.moment-player-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  color: #d0cecc;
 }
 
 .final-cta-section .site-footer {
