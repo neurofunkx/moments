@@ -55,9 +55,8 @@ if (menuToggle && navigation) {
   });
 }
 
-const isLocalSite = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-const apiBase = isLocalSite
-  ? "http://localhost:5446"
+const apiBase = window.location.protocol === "http:"
+  ? `http://${window.location.hostname}:5446`
   : document.querySelector('meta[name="moments-api"]')?.getAttribute("content") || "";
 
 const fetchJson = async (path) => {
