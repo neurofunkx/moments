@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#080909">
-    <meta name="moments-api" content="https://api.botcolony.com:5446">
+    <meta name="moments-api" content="https://loadbalancer1.botcolony.com:5446">
     <meta
       name="description"
       content="Moment Makers' League — say anything, show everyone what happened."
@@ -202,9 +202,9 @@
 
               <form class="moment-form" id="moment-form" novalidate hidden>
                 <label class="form-field">
-                  <span>Player name</span>
-                  <input name="handle" required minlength="3" maxlength="32" pattern="[\p{L}\p{N}_.\-]+" autocomplete="nickname">
-                  <small>Shown on the leaderboard. Letters, numbers, dots, dashes and underscores.</small>
+                  <span>Steam name</span>
+                  <input name="handle" required minlength="3" maxlength="32" pattern="[\p{L}\p{N}_.\-]+( [\p{L}\p{N}_.\-]+)*" autocomplete="nickname">
+                  <small>Your name on Steam, shown on the leaderboard.</small>
                   <em class="field-error" data-error-for="handle"></em>
                 </label>
                 <label class="form-field">
@@ -261,6 +261,14 @@
                 </label>
                 <button class="button form-field-wide" id="moment-submit" type="submit">Submit your moment</button>
               </form>
+
+              <dialog class="submit-dialog" id="submit-dialog" aria-labelledby="submit-dialog-title">
+                <h3 id="submit-dialog-title">Video submitted</h3>
+                <p>Thanks! Your video was submitted successfully and is now under review. It appears in the gallery once our editors approve it.</p>
+                <form method="dialog">
+                  <button class="button" type="submit" autofocus>OK</button>
+                </form>
+              </dialog>
             </div>
           </div>
           <footer class="site-footer">

@@ -670,6 +670,36 @@ h1 {
   border-left-color: var(--red);
 }
 
+.submit-dialog {
+  width: min(440px, calc(100vw - 32px));
+  padding: 28px 28px 24px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.submit-dialog::backdrop {
+  background: rgb(0 0 0 / 70%);
+}
+
+.submit-dialog h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.submit-dialog p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.submit-dialog form {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .submit-signin p {
   margin: 14px 0 0;
   color: #9c9c9c;

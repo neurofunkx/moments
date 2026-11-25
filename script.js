@@ -242,6 +242,7 @@ if (momentForm instanceof HTMLFormElement) {
   const signInLink = document.querySelector("#steam-sign-in");
   const signOutButton = document.querySelector("#steam-sign-out");
   const submitButton = document.querySelector("#moment-submit");
+  const submitDialog = document.querySelector("#submit-dialog");
 
   const loginMessages = {
     ok: "You're signed in. Add your Moment below.",
@@ -251,13 +252,13 @@ if (momentForm instanceof HTMLFormElement) {
 
   const submitErrors = {
     duplicate_video: "That video has already been submitted.",
-    handle_taken: "That player name is taken. Please choose another.",
+    handle_taken: "That Steam name is already used here. If it's yours, add something to tell you apart.",
     daily_limit: "You've reached today's limit. Please try again tomorrow.",
     sign_in_required: "Your sign-in has expired. Please sign in again.",
   };
 
   const fieldErrors = {
-    handle: "Use 3 to 32 letters, numbers, dots, dashes or underscores.",
+    handle: "Use 3 to 32 characters: letters, numbers, dots, dashes, underscores and single spaces.",
     email: "Enter a valid email address, or leave this empty.",
     videoUrl: "Enter a link to a YouTube video or a Twitch video or clip.",
     title: "Use 3 to 120 characters.",
@@ -376,7 +377,11 @@ if (momentForm instanceof HTMLFormElement) {
         momentForm.reset();
         handle.value = keep.handle;
         email.value = keep.email;
-        showStatus("Moment received. Our editors will review it soon.");
+        if (submitDialog instanceof HTMLDialogElement && typeof submitDialog.showModal === "function") {
+          submitDialog.showModal();
+        } else {
+          showStatus("Video submitted successfully. It is now under review.");
+        }
         return;
       }
 
